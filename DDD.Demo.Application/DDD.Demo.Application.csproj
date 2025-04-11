@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\DDD.Demo.Application.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DDD.Demo.Application.Contract\DDD.Demo.Application.Contract.csproj" />
+      <ProjectReference Include="..\DDD.Demo.Domain.Share\DDD.Demo.Domain.Share.csproj" />
+      <ProjectReference Include="..\DDD.Demo.Share\DDD.Demo.Share.csproj" />
+    </ItemGroup>
+
+</Project>

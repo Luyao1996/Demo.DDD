@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DDD.Demo.Application</name>
+    </assembly>
+    <members>
+        <member name="M:DDD.Demo.Application.Service.HelloAppService.SayHelloAsync(System.String)">
+            <summary>
+            你好
+            </summary>
+            <param name="name">名字</param>
+            <returns>你好，名字</returns>
+        </member>
+    </members>
+</doc>
