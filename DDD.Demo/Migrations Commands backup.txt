@@ -1,0 +1,9 @@
+﻿
+【初始化数据库命令】
+
+在项目根目录下依次执行：
+// 生成数据迁移文件 ， InitUserDb：迁移文件名称
+E:\Project\DDDDemo> dotnet ef migrations add InitUserDb --context UserDbContext --project .\DDD.Demo.Infrastructure\DDD.Demo.Infrastructure.csproj --startup-project .\DDD.Demo\DDD.Demo.csproj
+
+// 更新数据库  每次更新之前，如果数据库结构发送变更需要删除之前生成的迁移文件并重新生成
+E:\Project\DDDDemo> dotnet ef database update --context UserDbContext --project .\DDD.Demo.Infrastructure\DDD.Demo.Infrastructure.csproj --startup-project .\DDD.Demo\DDD.Demo.csproj
