@@ -1,4 +1,5 @@
 ﻿using System.Net.Mime;
+using DDD.Demo.Attributes;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Autofac;
@@ -8,9 +9,7 @@ namespace DDD.Demo;
 
 [DependsOn(typeof(AbpAspNetCoreMvcModule))]
 [DependsOn(typeof(AbpAutofacModule))] 
-[DependsOn(typeof(Application.Module))] 
-[DependsOn(typeof(Domain.Module))]
-[DependsOn(typeof(Infrastructure.Module))]
+[DependsOnForApplication]
 public class Module : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

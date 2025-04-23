@@ -23,7 +23,7 @@ public class UserUnitManager:ITransientDependency
     {
         if (hotCondition)
         {
-            var data = await _unitOfCache.TryGetCacheData(CacheMap.User_list_Age_18_20, funcDataQuery);
+            var data = await _unitOfCache.TryGetCacheDataWithDistributedLocking(CacheMap.User_list_Age_18_20,CacheMap.User_list_Age_18_20_Locker, funcDataQuery);
             return await funcDataFilter(data);
         }
 

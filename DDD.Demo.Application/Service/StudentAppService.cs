@@ -13,6 +13,7 @@ public class StudentAppService:ApplicationService
     
     public async Task<Guid> NewAsync(NewStudentInput input)
     {
+        //throw new NotImplementedException();
         return await _StudentManager.NewAsync(input);
     }
     

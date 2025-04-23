@@ -16,7 +16,7 @@ public class StudentManager:Volo.Abp.Domain.Services.DomainService,IStudentManag
         var apply = new StudentInfo(input.StudentInfo);
         var aggr = await StudentAggrRoot.CreateNewStudentAggr(apply)
             .WithEnrollment(input.EnrollmentInfo)
-            .WithUserInfoManagement()
+            .WithEventBusManagement()
             .BuildAync();
         return await aggr.DoAsync();
     }

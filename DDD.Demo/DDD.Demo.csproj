@@ -11,6 +11,7 @@
       <ProjectReference Include="..\DDD.Demo.Domain\DDD.Demo.Domain.csproj" />
       <ProjectReference Include="..\DDD.Demo.Infrastructure\DDD.Demo.Infrastructure.csproj" />
       <ProjectReference Include="..\DDD.Demo.Share\DDD.Demo.Share.csproj" />
+      <ProjectReference Include="..\Demo.Pkg.Rabbitmq.Comsumer\Demo.Pkg.Rabbitmq.Comsumer.csproj" />
     </ItemGroup>
 
     <ItemGroup>

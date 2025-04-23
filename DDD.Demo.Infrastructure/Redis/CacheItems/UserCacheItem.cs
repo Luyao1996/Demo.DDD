@@ -1,11 +1,26 @@
 ﻿using DDD.Demo.Domain.Share.Dto.User;
+using DDD.Demo.Domain.Share.Enums;
 using DDD.Demo.Infrastructure.ORM.Entities;
 using NUglify.JavaScript.Syntax;
 
 namespace DDD.Demo.Infrastructure.Redis.CacheItems;
 
-public class UserCacheItem:User
+public class UserCacheItem
 {
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    /// <summary>
+    /// 学生编号 唯一的
+    /// </summary>
+    public long Number { get; set; }
+    public int Age { get; set; }
+    public bool IsMan { get; set; }
+    public EnumSchoolRole Role { get; set; }
+    public DateTime? CreationTime { get; set; }
+    public Guid? CreatorId{ get; set; }
+    public DateTime? LastModificationTime { get; set; }
+    public Guid? LastModifierId{ get; set; }
+    
     public static UserCacheItem BuildFromUser(User user)
     {
         var res = new UserCacheItem();
@@ -15,12 +30,10 @@ public class UserCacheItem:User
         res.Number = user.Number;
         res.Role = user.Role;
         res.IsMan = user.IsMan;
-        res.ConcurrencyStamp = user.ConcurrencyStamp;
         res.CreationTime = user.CreationTime;
         res.CreatorId = user.CreatorId;
         res.LastModificationTime = user.LastModificationTime;
         res.LastModifierId = user.LastModifierId;
-        res.ExtraProperties = user.ExtraProperties;
         return res;
     }
 
@@ -32,8 +45,6 @@ public class UserCacheItem:User
         res.Number = this.Number;
         res.Role = this.Role;
         res.IsMan = this.IsMan;
-        res.ConcurrencyStamp = this.ConcurrencyStamp;
-        res.CreationTime = this.CreationTime;
         res.CreatorId = this.CreatorId;
         res.LastModificationTime = this.LastModificationTime;
         res.LastModifierId = this.LastModifierId;

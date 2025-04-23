@@ -44,7 +44,7 @@ public class UserDataAccess:IUserDataAccess,ITransientDependency
         var userInfos = await _userUnitManager.TryGetFromCache_UserListAsync(
             hotCondition: hotConditions, 
             funcDataQuery: async () => UserCacheItem.BuildFromUsers(await _repo.GetListAsync(hotConditions)), 
-            funcDataFilter: async (data) => UserCacheItem.ToUsers(data.FindAll(_userUnitManager.PredicateBuilder(input))));
+            funcDataFilter: async (data) => UserCacheItem.ToUsers(data).FindAll(_userUnitManager.PredicateBuilder(input)));
 
         if (userInfos == default)
         {
@@ -74,7 +74,7 @@ public class UserDataAccess:IUserDataAccess,ITransientDependency
         var userInfos = await _userUnitManager.TryGetFromCache_UserListAsync(
             hotCondition: hotConditions, 
             funcDataQuery: async () => UserCacheItem.BuildFromUsers(await _repo.GetListAsync(hotConditions)), 
-            funcDataFilter: async (data) => UserCacheItem.ToUsers(data.FindAll(_userUnitManager.PredicateBuilder(input))));
+            funcDataFilter: async (data) => UserCacheItem.ToUsers(data).FindAll(_userUnitManager.PredicateBuilder(input)));
 
         var totalCount = 0;
         List<User> pagedItems = new List<User>();

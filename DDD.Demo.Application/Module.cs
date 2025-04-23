@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DDD.Demo.Application.BackgroundJobs;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.Auditing;
+using Volo.Abp.FluentValidation;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 
@@ -10,6 +13,7 @@ namespace DDD.Demo.Application;
 
 [DependsOn(typeof(AbpSwashbuckleModule))]
 [DependsOn(typeof(Contract.Module))]
+[DependsOn(typeof(AbpFluentValidationModule))] // 参数验证器
 public class Module:AbpModule
 {
     public override async Task ConfigureServicesAsync(ServiceConfigurationContext context)
@@ -23,10 +27,15 @@ public class Module:AbpModule
         });
 
         SwaggerConfiguration(services);
+        AuditLoggingConfiguration(services);
+        BackgroundJobsConfiguration(services);
+        
         
         await base.ConfigureServicesAsync(context);
     }
-    
+
+
+
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
         var app = context.GetApplicationBuilder();
@@ -36,11 +45,13 @@ public class Module:AbpModule
         app.UseStaticFiles();
 
         app.UseSwagger();
+        app.UseAuditing();
 
         app.UseAbpSwaggerUI(options =>
         {
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "Test API");
         });
+        
     }
     
     private void SwaggerConfiguration(IServiceCollection services)
@@ -59,4 +70,20 @@ public class Module:AbpModule
             }
         );
     }
+    
+    
+    private void AuditLoggingConfiguration(IServiceCollection services)
+    {
+        Configure<AbpAuditingOptions>(options =>
+        {
+            options.IsEnabled = true;
+            //options.IsEnabledForGetRequests = false;
+        });
+    }
+    
+    private void BackgroundJobsConfiguration(IServiceCollection services)
+    {
+        services.AddHostedService<PrintNowTimeBackgroundJob>();
+    }
+
 }

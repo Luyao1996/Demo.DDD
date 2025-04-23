@@ -1,2 +1,10 @@
-已完成：
 swagger , efcore ,  分布式自增id（基于redis） , ddd ,
+模型验证
+审计日志
+后台任务
+分布式锁
+事件总线（本地）
+Rabbitmq
+通过环境变量（serverMod）启动不同的服务
+
+# 启动项目时，修改环境变量中的servermod，以启动不同的服务
